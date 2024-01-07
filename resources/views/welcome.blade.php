@@ -17,19 +17,28 @@
                 <img src="assets/images/logo-icon.png" alt="logo icon">
             </div>
             <div class="card-title text-uppercase text-center py-3">Connexion</div>
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="form-group">
-                    <label for="exampleInputUsername" class="sr-only">Email</label>
+                    <label for="name" class="sr-only">Nom</label>
                     <div class="position-relative has-icon-right">
-                        <input type="email" class="form-control input-shadow" placeholder="Entrer votre email" id="exampleInputUsername" name="email" value="{{ old('email') }}" required autofocus>
+                        <input type="text" class="form-control input-shadow" placeholder="Entrer votre nom" id="exampleInputUsername" name="name" required autofocus>
                         <div class="form-control-position">
                             <i class="icon-user"></i>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword" class="sr-only">Password</label>
+                    <label for="email" class="sr-only">Email</label>
+                    <div class="position-relative has-icon-right">
+                        <input type="email" class="form-control input-shadow" placeholder="Entrer votre email" id="exampleInputUsername" name="email" required autofocus>
+                        <div class="form-control-position">
+                            <i class="icon-user"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="sr-only">Mot de passe</label>
                     <div class="position-relative has-icon-right">
                         <input type="password" name="password" id="exampleInputPassword" required class="form-control input-shadow" placeholder="Enter Password">
                         <div class="form-control-position">
@@ -37,28 +46,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-6">
-                        <div class="icheck-material-white">
-                            <input type="checkbox" id="user-checkbox" checked="" />
-                            <label for="user-checkbox">Remember me</label>
+                <div class="form-group">
+                    <label for="password_confirmation" class="sr-only">Mot de passe confirmation</label>
+                    <div class="position-relative has-icon-right">
+                        <input type="password" name="password_confirmation" id="exampleInputPassword" required class="form-control input-shadow" placeholder="Enter Password">
+                        <div class="form-control-position">
+                            <i class="icon-lock"></i>
                         </div>
                     </div>
-                    <div class="form-group col-6 text-right">
-                        <a href="reset-password.html">Reset Password</a>
-                    </div>
                 </div>
-                <button type="button" class="btn btn-light btn-block">Connexion</button>
-                <div class="text-center mt-3">Sign In With</div>
-
-                <div class="form-row mt-4">
-                    <div class="form-group mb-0 col-6">
-                        <button type="button" class="btn btn-light btn-block"><i class="fa fa-facebook-square"></i> Facebook</button>
-                    </div>
-                    <div class="form-group mb-0 col-6 text-right">
-                        <button type="button" class="btn btn-light btn-block"><i class="fa fa-twitter-square"></i> Twitter</button>
-                    </div>
-                </div>
+               
+                <button type="submit" class="btn btn-light btn-block">S'inscrire</button>
 
             </form>
         </div>

@@ -1,29 +1,111 @@
-<!-- resources/views/auth/register.blade.php -->
+@extends('layouts.loginBase')
 
-<form method="POST" action="{{ route('register') }}">
-    @csrf
+@section('content')
 
-    <div>
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="{{ old('name') }}" required autofocus>
+<div class="loader-wrapper">
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
+</div>
+<div class="card card-authentication1 mx-auto my-5">
+    <div class="card-body">
+        <div class="card-content p-2">
+            <div class="text-center">
+                <img src="assets/images/logo-icon.png" alt="logo icon">
+            </div>
+            <div class="card-title text-uppercase text-center py-3">Inscription</div>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+                <div class="form-group">
+                    <label for="name" class="sr-only">Nom</label>
+                    <div class="position-relative has-icon-right">
+                        <input type="text" class="form-control input-shadow" placeholder="Entrer votre nom" id="exampleInputUsername" name="name" required autofocus>
+                        <div class="form-control-position">
+                            <i class="icon-user"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="sr-only">Email</label>
+                    <div class="position-relative has-icon-right">
+                        <input type="email" class="form-control input-shadow" placeholder="Entrer votre email" id="exampleInputUsername" name="email" required autofocus>
+                        <div class="form-control-position">
+                            <i class="icon-user"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="sr-only">Mot de passe</label>
+                    <div class="position-relative has-icon-right">
+                        <input type="password" name="password" id="exampleInputPassword" required class="form-control input-shadow" placeholder="Mot de passe">
+                        <div class="form-control-position">
+                            <i class="icon-lock"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password_confirmation" class="sr-only">Mot de passe confirmation</label>
+                    <div class="position-relative has-icon-right">
+                        <input type="password" name="password_confirmation" id="exampleInputPassword" required class="form-control input-shadow" placeholder="Mot de passe confirmation">
+                        <div class="form-control-position">
+                            <i class="icon-lock"></i>
+                        </div>
+                    </div>
+                </div>
+               
+                <button type="submit" class="btn btn-light btn-block">S'inscrire</button>
 
-    <div>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+            </form>
+        </div>
     </div>
+    <div class="card-footer text-center py-3">
+        <p class="text-warning mb-0">Vous avez déja un compte ? <a href="{{ route('login') }}"> Connectez-vous ici</a></p>
+    </div>
+</div>
 
-    <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required>
-    </div>
+<!--Start Back To Top Button-->
+<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+<!--End Back To Top Button-->
 
-    <div>
-        <label for="password_confirmation">Confirm Password</label>
-        <input type="password" name="password_confirmation" id="password_confirmation" required>
+<!--start color switcher-->
+<div class="right-sidebar">
+    <div class="switcher-icon">
+        <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
     </div>
+    <div class="right-sidebar-content">
 
-    <div>
-        <button type="submit">Register</button>
+        <p class="mb-0">Gaussion Texture</p>
+        <hr>
+
+        <ul class="switcher">
+            <li id="theme1"></li>
+            <li id="theme2"></li>
+            <li id="theme3"></li>
+            <li id="theme4"></li>
+            <li id="theme5"></li>
+            <li id="theme6"></li>
+        </ul>
+
+        <p class="mb-0">Gradient Background</p>
+        <hr>
+
+        <ul class="switcher">
+            <li id="theme7"></li>
+            <li id="theme8"></li>
+            <li id="theme9"></li>
+            <li id="theme10"></li>
+            <li id="theme11"></li>
+            <li id="theme12"></li>
+            <li id="theme13"></li>
+            <li id="theme14"></li>
+            <li id="theme15"></li>
+        </ul>
+
     </div>
-</form>
+</div>
+<!--end color switcher-->
+
+@endsection

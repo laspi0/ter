@@ -37,34 +37,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-6">
-                        <div class="icheck-material-white">
-                            <input type="checkbox" id="user-checkbox" checked="" />
-                            <label for="user-checkbox">Se souvenir de moi</label>
-                        </div>
-                    </div>
-                    <div class="form-group col-6 text-right">
-                        <a href="reset-password.html">Réinitialiser le mot de passe</a>
-                    </div>
-                </div>
+               
                 <button type="submit" class="btn btn-light btn-block">Connexion</button>
-                <div class="text-center mt-3">Se connecter avec</div>
-
-                <div class="form-row mt-4">
-                    <div class="form-group mb-0 col-6">
-                        <button type="button" class="btn btn-light btn-block"><i class="fa fa-facebook-square"></i> Facebook</button>
-                    </div>
-                    <div class="form-group mb-0 col-6 text-right">
-                        <button type="button" class="btn btn-light btn-block"><i class="fa fa-twitter-square"></i> Twitter</button>
-                    </div>
-                </div>
+               
 
             </form>
         </div>
     </div>
     <div class="card-footer text-center py-3">
-        <p class="text-warning mb-0">Vous n'avez pas de compte ? <a href="register.html"> Inscrivez-vous ici</a></p>
+        <p class="text-warning mb-0">Vous n'avez pas de compte ? <a href="{{ route('register') }}"> Inscrivez-vous ici</a></p>
     </div>
 </div>
 
