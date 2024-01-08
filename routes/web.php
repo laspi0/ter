@@ -34,9 +34,8 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 
 
-
 Route::get('/billets/create', [BilletController::class, 'create'])->middleware('auth')->name('billets.create');
 Route::post('/billets', [BilletController::class, 'store'])->middleware('auth')->name('billets.store');
+Route::get('/billets/{id}', [BilletController::class, 'show'])->middleware('auth')->name('billets.show');
 Route::get('/billets', [BilletController::class, 'index'])->middleware('auth')->name('billets.index');
 Route::delete('/billets/{id}', [BilletController::class, 'cancel'])->middleware('auth')->name('billets.cancel');
-

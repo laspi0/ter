@@ -16,6 +16,16 @@ return [
     |
     */
 
+    'providers' => [
+        // ...
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+    ],
+    
+    'aliases' => [
+        // ...
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+    ],
+
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
