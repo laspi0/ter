@@ -1,7 +1,6 @@
 @extends('layouts.loginBase')
 
 @section('content')
-
 <div class="loader-wrapper">
     <div class="lds-ring">
         <div></div>

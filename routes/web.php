@@ -29,7 +29,7 @@ Route::post('/login', [UserController::class, 'login']);
 
 
 Route::get('/profile', [UserController::class, 'profile'])->middleware('auth')->name('profile');
-Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 
 
