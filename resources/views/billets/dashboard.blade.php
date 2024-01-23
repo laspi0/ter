@@ -38,7 +38,7 @@
         <!--Start sidebar-wrapper-->
         <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
             <div class="brand-logo">
-                <a href="{{ route('welcome') }}">
+                <a href="index.html">
                     <img src="../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
                     <h5 class="logo-text">Ter dakar</h5>
                 </a>
@@ -46,11 +46,20 @@
             <ul class="sidebar-menu do-nicescrol">
                 <li class="sidebar-header">MAIN NAVIGATION</li>
                 <li>
-                    <a href="{{ route('welcome') }}">
-                        <i class="zmdi zmdi-view-dashboard"></i> <span>Les horaires</span>
+                    <a href="{{ route('billets.dashboard') }}">
+                        <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{ route('billets.index') }}">
+                        <i class="zmdi zmdi-view-dashboard"></i> <span>Billets</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('billets.create') }}">
+                        <i class="zmdi zmdi-invert-colors"></i> <span>Réservation</span>
+                    </a>
+                </li>
 
             </ul>
 
@@ -67,9 +76,12 @@
                         </a>
                     </li>
                 </ul>
-                <p class="mt-2"></p>
+                <p class="mt-2"> {{ auth()->user()->email }}</p>
+
+                <form class="ml-3" action="{{ route('logout') }}" method="get">
                     @csrf
-                    <a href="{{ route('login') }}" class="btn btn-primary">Se connecter</a>
+                    <button class="btn btn-warning" type="submit">Se déconnecter</button>
+                </form>
                 </ul>
             </nav>
         </header>
@@ -87,20 +99,20 @@
                         <div class="row row-group m-0">
                             <div class="col border-light">
                                 <div class="card-body">
-                                    <h5 class="text-white mb-0">30 <span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
+                                    <h5 class="text-white mb-0">{{$nombre}} <span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
                                     <div class="progress my-3" style="height:3px;">
                                         <div class="progress-bar" style="width:55%"></div>
                                     </div>
-                                    <p class="mb-0 text-white small-font">Nombre de trains <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                                    <p class="mb-0 text-white small-font">Total de billets <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
                                 </div>
                             </div>
                             <div class="col border-light">
                                 <div class="card-body">
-                                    <h5 class="text-white mb-0">155 <span class="float-right"><i class="fa fa-usd"></i></span></h5>
+                                    <h5 class="text-white mb-0">{{$somme}} <span class="float-right"><i class="fa fa-usd"></i></span></h5>
                                     <div class="progress my-3" style="height:3px;">
                                         <div class="progress-bar" style="width:55%"></div>
                                     </div>
-                                    <p class="mb-0 text-white small-font">Nombre de wagons <span class="float-right">+1.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                                    <p class="mb-0 text-white small-font">Total depense <span class="float-right">+1.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
                                 </div>
                             </div>
 
@@ -108,69 +120,30 @@
                     </div>
                 </div>
 
+
+
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Train</th>
-                            <th>Départ dans</th>
-                            <th>Arrivée dans</th>
+                            <th>Classe</th>
+                            <th>Tarif</th>
+                            <th>Départ</th>
+                            <th>Arrivée</th>
+                            <th>Heure de Départ</th>
                         </tr>
                     </thead>
-                    <tbody id="trainDeparturesBody">
+                    <tbody>
+                        @foreach($billets as $billet)
+                        <tr>
+                            <td>{{ $billet->classe }}</td>
+                            <td>{{ $billet->tarif }}</td>
+                            <td>{{ $billet->depart }}</td>
+                            <td>{{ $billet->arrive }}</td>
+                            <td>{{ $billet->heure_depart }}</td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
-
-                <script>
-                    var trains = [{
-                            train: 1,
-                            departure: '10 minutes',
-                            arrival: '20 minutes'
-                        },
-                        {
-                            train: 2,
-                            departure: '20 minutes',
-                            arrival: '30 minutes'
-                        },
-                        {
-                            train: 3,
-                            departure: '30 minutes',
-                            arrival: '40 minutes'
-                        },
-                        {
-                            train: 4,
-                            departure: '40 minutes',
-                            arrival: '50 minutes'
-                        },
-                        {
-                            train: 5,
-                            departure: '50 minutes',
-                            arrival: '60 minutes'
-                        },
-                        {
-                            train: 6,
-                            departure: '60 minutes',
-                            arrival: '70 minutes'
-                        },
-                    ];
-
-                    function updateTrainDepartures() {
-                        var tbody = document.getElementById('trainDeparturesBody');
-                        tbody.innerHTML = '';
-
-                        for (var i = 0; i < trains.length; i++) {
-                            var row = '<tr>' +
-                                '<td>' + trains[i].train + '</td>' +
-                                '<td>' + trains[i].departure + '</td>' +
-                                '<td>' + trains[i].arrival + '</td>' +
-                                '</tr>';
-
-                            tbody.innerHTML += row;
-                        }
-                    }
-
-                    updateTrainDepartures();
-                </script>
-
 
 
                 <!--End Dashboard Content-->

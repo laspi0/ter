@@ -10,7 +10,8 @@
         <div></div>
     </div>
 </div>
-<div class="card card-authentication1 mx-auto my-5">
+<a href="{{route('billets.index')}}" class="btn btn-success  ml-2 mt-1">retour</a>
+<div class="card card-authentication1 mx-auto my-5 ">
     <div class="card-body">
         <div class="card-content p-2">
             <div class="text-center">
@@ -160,21 +161,44 @@
             var classe = $('#classe').val();
 
             var tarif = 0;
+
             if (classe === '1ère classe') {
                 tarif = 2500;
             } else {
-                if (depart === 'Dakar' && arrive === 'Colobane') {
+                // Vos conditions existantes
+                if (depart === 'Dakar' && (arrive === 'Colobane' || arrive === 'Hann')) {
                     tarif = 500;
-                } else if (depart === 'Dakar' && arrive === 'Hann') {
-                    tarif = 1000;
+                } else if (depart === 'Dakar' && (arrive === 'Hann' || arrive === 'Dalifort' || arrive === 'Baux-Maraichers')) {
+                    tarif = 500;
                 } else if (depart === 'Dakar' && arrive === 'Dalifort') {
-                    tarif = 2000;
+                    tarif = 1000;
                 } else if (depart === 'Dakar' && arrive === 'Pikine') {
-                    tarif = 2500;
+                } else if (arrive === 'Dakar') {
+                    tarif = 1500;
+                } else if (depart === 'Dakar' && arrive === 'Pikine') {
+                    tarif = 1000;
+                } else if (depart !== 'Dakar' && (arrive === 'Colobane' || arrive === 'Hann' || arrive === 'Rufisque' || arrive === 'Keur Mbaye Fall' || arrive === 'PNR' || arrive === 'Bargny' || arrive === 'Diamniado')) {
+                    tarif = 1000;
+                }
+
+                // Nouvelles conditions pour les tarifs 500, 1000 et 1500
+                var destinationsTarif500 = ['Colobane', 'Hann', 'Dalifort'];
+                var destinationsTarif1000 = ['Baux-Maraichers'];
+                var destinationsTarif1500 = ['Thiaroye', 'Yembeul', 'Keur Mbaye Fall', 'PNR', 'Rufisque', 'Bargny', 'Diamniado'];
+
+                if (depart !== 'Dakar' && destinationsTarif500.includes(arrive)) {
+                    tarif = 500;
+                } else if (depart !== 'Dakar' && destinationsTarif1000.includes(arrive)) {
+                    tarif = 1000;
+                } else if (depart !== 'Dakar' && destinationsTarif1500.includes(arrive)) {
+                    tarif = 1500;
                 }
             }
+
             $('#tarif').val(tarif);
         });
+
+
 
     });
 </script>

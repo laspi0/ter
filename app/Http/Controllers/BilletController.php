@@ -9,6 +9,15 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class BilletController extends Controller
 {
+
+    public function dashboard(){
+
+        $nombre = Billet::where('user_id', auth()->user()->id)->get()->count();
+        $billets = Billet::where('user_id', auth()->user()->id)->get()->take(4);
+        $somme = Billet::where('user_id', auth()->user()->id)->sum('tarif');
+
+        return view('billets.dashboard',compact('nombre','somme','billets'));
+    }
     public function create()
     {
         return view('billets.create');
@@ -23,7 +32,8 @@ class BilletController extends Controller
             'arrive' => 'required',
             'heure_depart' => 'required|date',
         ]);
-
+    
+    
         $billet = new Billet([
             'classe' => $request->input('classe'),
             'tarif' => $request->input('tarif'),
@@ -32,11 +42,13 @@ class BilletController extends Controller
             'heure_depart' => $request->input('heure_depart'),
             'user_id' => auth()->user()->id
         ]);
-
+        // dd($billet);
+    
         $billet->save();
-
+    
         return redirect()->route('billets.index')->with('success', 'Billet créé avec succès.');
     }
+    
 
 
     public function show($id)
@@ -63,4 +75,14 @@ class BilletController extends Controller
 
         return redirect()->route('billets.index')->with('error', 'Impossible d\'annuler le billet.');
     }
+
+
+    public function destroy(string $id)
+    {
+        $billet = Billet::findOrFail($id);
+        $billet->delete();
+        return redirect()->route('billets.index')
+            ->with('success', 'billet annuler avec supprimé avec succès.');
+    }
+
 }
